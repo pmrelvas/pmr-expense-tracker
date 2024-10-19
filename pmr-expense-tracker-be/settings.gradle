@@ -1,3 +1,4 @@
 rootProject.name = 'pmr-expense-tracker'
 include 'api'
+include 'domain'
 

@@ -13,6 +13,10 @@ java {
 	}
 }
 
+ext {
+	lombokVersion='1.18.34'
+}
+
 allprojects {
 	apply plugin: 'java'
 	apply plugin: 'org.springframework.boot'
@@ -23,16 +27,20 @@ allprojects {
 	}
 
 	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter'
 		developmentOnly 'org.springframework.boot:spring-boot-devtools'
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 		testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+		compileOnly "org.projectlombok:lombok:${lombokVersion}"
+		annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+		testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+		testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 	}
 }
 
 dependencies {
 	implementation project(':api')
-
-	implementation 'org.springframework.boot:spring-boot-starter'
 }
 
 tasks.named('test') {
