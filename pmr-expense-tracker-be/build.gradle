@@ -41,6 +41,8 @@ allprojects {
 
 dependencies {
 	implementation project(':api')
+	implementation project(':data')
+	implementation 'org.springframework.data:spring-data-jpa'
 }
 
 tasks.named('test') {
