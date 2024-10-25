@@ -15,6 +15,9 @@ java {
 
 ext {
 	lombokVersion='1.18.34'
+	flywayVersion='10.20.1'
+	postgresVersion='42.7.4'
+	enversVersion='6.6.1.Final'
 }
 
 allprojects {
@@ -42,7 +45,6 @@ allprojects {
 dependencies {
 	implementation project(':api')
 	implementation project(':data')
-	implementation 'org.springframework.data:spring-data-jpa'
 }
 
 tasks.named('test') {

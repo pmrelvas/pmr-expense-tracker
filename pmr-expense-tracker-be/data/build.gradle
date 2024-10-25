@@ -11,6 +11,13 @@ repositories {
 
 dependencies {
     implementation project(":domain")
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly "org.flywaydb:flyway-database-postgresql:${flywayVersion}"
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+    implementation 'javax.persistence:javax.persistence-api:2.2'
 }
 
 test {
