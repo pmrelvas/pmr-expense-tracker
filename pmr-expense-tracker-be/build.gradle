@@ -18,6 +18,7 @@ ext {
 	flywayVersion='10.20.1'
 	postgresVersion='42.7.4'
 	enversVersion='6.6.1.Final'
+	queryDslVersion='5.1.0'
 }
 
 allprojects {

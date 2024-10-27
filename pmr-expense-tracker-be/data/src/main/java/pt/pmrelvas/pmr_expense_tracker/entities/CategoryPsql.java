@@ -32,4 +32,22 @@ public class CategoryPsql {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    public CategoryPsql(Category category) {
+        this.id = category.id();
+        this.code = category.code();
+        this.name = category.name();
+        this.parentCategory = category.parentCategory() == null ? null : new CategoryPsql(category.parentCategory());
+        this.createdAt = category.createdAt();
+    }
+
+    public Category toEntity() {
+        return Category.builder()
+                .id(this.id)
+                .code(this.code)
+                .name(this.name)
+                .parentCategory(this.parentCategory == null ? null : this.parentCategory.toEntity())
+                .createdAt(this.createdAt)
+                .build();
+    }
 }
