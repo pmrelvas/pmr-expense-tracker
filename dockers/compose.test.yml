@@ -1,11 +1,11 @@
 services:
-  expense-tracker-database:
+  expense-tracker-database-test:
     build:
       context: expense-tracker-database
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "${DB_PORT:-5432}"
+      - "15432"
 
 volumes:
   postgres_data:

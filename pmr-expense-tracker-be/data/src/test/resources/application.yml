@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: pmr-expense-tracker
+
+  datasource:
+    url: jdbc:postgresql://localhost:15432/expense_tracker

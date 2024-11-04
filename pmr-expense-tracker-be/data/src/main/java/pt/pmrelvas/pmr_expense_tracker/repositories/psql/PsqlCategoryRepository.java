@@ -33,6 +33,16 @@ public class PsqlCategoryRepository implements CategoryRepository {
                 .toList();
     }
 
+    @Override
+    public Category upsert(Category category) {
+        return jpaCategoryRepository.save(new CategoryPsql(category)).toEntity();
+    }
+
+    @Override
+    public void delete(long id) {
+        jpaCategoryRepository.deleteById(id);
+    }
+
     private static void buildWhereClauses(CategoryFilters filters, JPAQuery<CategoryPsql> query, QCategoryPsql qCategoryPsql) {
         if (filters.code() != null) {
             query.where(qCategoryPsql.code.contains(filters.code()));
@@ -47,13 +57,4 @@ public class PsqlCategoryRepository implements CategoryRepository {
         }
     }
 
-    @Override
-    public Category upsert(Category category) {
-        return jpaCategoryRepository.save(new CategoryPsql(category)).toEntity();
-    }
-
-    @Override
-    public void delete(long id) {
-        jpaCategoryRepository.deleteById(id);
-    }
 }

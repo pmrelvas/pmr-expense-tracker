@@ -1,9 +1,7 @@
 plugins {
     id 'java'
+    id 'com.avast.gradle.docker-compose' version "$dockerComposeGradlePluginVersion"
 }
-
-group = 'pt.pmrelvas'
-version = '0.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -15,17 +13,24 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     runtimeOnly 'org.postgresql:postgresql'
-    runtimeOnly "org.flywaydb:flyway-database-postgresql:${flywayVersion}"
+    runtimeOnly "org.flywaydb:flyway-database-postgresql:$flywayVersion"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
-    implementation 'jakarta.persistence:jakarta.persistence-api:3.2.0'
+    implementation "jakarta.persistence:jakarta.persistence-api:$jakartaVersion"
 
     // QueryDSL
-    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
-    annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta"
+    implementation "com.querydsl:querydsl-jpa:$queryDslVersion:jakarta"
+    annotationProcessor "com.querydsl:querydsl-apt:$queryDslVersion:jakarta"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 }
 
 test {
     useJUnitPlatform()
+}
+
+dockerCompose.isRequiredBy(test)
+
+dockerCompose {
+    useComposeFiles = ['../dockers/compose.test.yml']
+    startedServices = ['expense-tracker-database-test']
 }
