@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 
-@ComponentScan(basePackages = {"pt.pmrelvas.pmr_expese_tracker"})
+@ComponentScan(basePackages = {"pt.pmrelvas.pmr_expense_tracker"})
 @SpringBootApplication
 public class DataTestApplication {
     public static void main(String[] args) {

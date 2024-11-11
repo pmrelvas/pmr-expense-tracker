@@ -13,4 +13,5 @@ public record Category(
         LocalDateTime createdAt
 ) {
 
+
 }

@@ -11,5 +11,5 @@ public interface CategoryRepository {
 
     Category upsert(Category category);
 
-    void delete(long id);
+    void deleteById(long id);
 }
