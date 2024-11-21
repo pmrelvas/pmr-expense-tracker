@@ -10,8 +10,8 @@ public record Category(
         String code,
         String name,
         Category parentCategory,
-        LocalDateTime createdAt
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt
 ) {
-
 
 }

@@ -14,6 +14,7 @@ import pt.pmrelvas.pmr_expense_tracker.repositories.CategoryRepository;
 import pt.pmrelvas.pmr_expense_tracker.repositories.psql.jpa.JpaCategoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -33,6 +34,11 @@ public class PsqlCategoryRepository implements CategoryRepository {
         return query.distinct().fetch().stream()
                 .map(CategoryPsql::toEntity)
                 .toList();
+    }
+
+    @Override
+    public Optional<Category> findById(long id) {
+        return jpaCategoryRepository.findById(id).map(CategoryPsql::toEntity);
     }
 
     @Transactional

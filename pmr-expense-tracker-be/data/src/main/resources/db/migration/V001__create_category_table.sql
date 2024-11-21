@@ -9,5 +9,6 @@ CREATE TABLE IF NOT EXISTS categories (
     code VARCHAR(100) NOT NULL UNIQUE,
     name VARCHAR(200) NOT NULL,
     fk_parent_category BIGINT,
-    created_at TIMESTAMP
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
 );

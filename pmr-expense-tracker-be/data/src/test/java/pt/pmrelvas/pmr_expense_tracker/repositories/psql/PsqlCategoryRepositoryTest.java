@@ -7,6 +7,7 @@ import pt.pmrelvas.pmr_expense_tracker.entities.fake.FakeCategories;
 import pt.pmrelvas.pmr_expense_tracker.entities.filters.CategoryFilters;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -124,5 +125,19 @@ public class PsqlCategoryRepositoryTest extends BaseDatabaseTest {
                 .hasSize(1)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id", "parentCategory.id")
                 .containsExactly(FakeCategories.FUEL);
+    }
+
+    @Test
+    void findByIdWithMatchingRecordShouldSucceed() {
+        Category category = create(FakeCategories.CAR);
+
+        Optional<Category> result = categoryRepository.findById(category.id());
+
+        assertThat(result)
+                .isNotEmpty()
+                .get()
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .isEqualTo(FakeCategories.CAR);
     }
 }

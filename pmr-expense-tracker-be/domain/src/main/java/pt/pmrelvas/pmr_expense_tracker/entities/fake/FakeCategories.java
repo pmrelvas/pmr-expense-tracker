@@ -11,12 +11,14 @@ public interface FakeCategories {
             .code("CAR")
             .name("Car")
             .createdAt(LocalDateTime.now(ZoneOffset.UTC))
+            .updatedAt(LocalDateTime.now(ZoneOffset.UTC))
             .build();
 
     Category HOUSE = Category.builder()
             .code("HOUSE")
             .name("House")
             .createdAt(LocalDateTime.now(ZoneOffset.UTC))
+            .updatedAt(LocalDateTime.now(ZoneOffset.UTC))
             .build();
 
     Category FUEL = Category.builder()
@@ -24,6 +26,7 @@ public interface FakeCategories {
             .name("Fuel")
             .parentCategory(CAR)
             .createdAt(LocalDateTime.now(ZoneOffset.UTC))
+            .updatedAt(LocalDateTime.now(ZoneOffset.UTC))
             .build();
 
     List<Category> ALL = List.of(CAR, HOUSE, FUEL);
