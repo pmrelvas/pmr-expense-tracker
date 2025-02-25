@@ -1,0 +1,2 @@
+// fetch all
+GET {{host}}/api/v1/categories
