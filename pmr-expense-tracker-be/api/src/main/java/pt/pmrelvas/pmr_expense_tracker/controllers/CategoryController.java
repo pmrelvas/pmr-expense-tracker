@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pt.pmrelvas.pmr_expense_tracker.payloads.request.CategoryFiltersApiRequestPayload;
-import pt.pmrelvas.pmr_expense_tracker.payloads.response.CategoryApiRequestPayload;
+import pt.pmrelvas.pmr_expense_tracker.payloads.request.CategoryApiRequestPayload;
 import pt.pmrelvas.pmr_expense_tracker.payloads.response.CategoryApiResponsePayload;
 import pt.pmrelvas.pmr_expense_tracker.usecases.categories.CreateCategoryUseCase;
 import pt.pmrelvas.pmr_expense_tracker.usecases.categories.DeleteCategoryUseCase;

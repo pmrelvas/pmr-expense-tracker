@@ -1,18 +1,21 @@
 package pt.pmrelvas.pmr_expense_tracker.repositories.psql;
 
-import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pt.pmrelvas.pmr_expense_tracker.entities.Category;
 import pt.pmrelvas.pmr_expense_tracker.entities.CategoryPsql;
-import pt.pmrelvas.pmr_expense_tracker.entities.QCategoryPsql;
+import pt.pmrelvas.pmr_expense_tracker.entities.CategoryPsql_;
 import pt.pmrelvas.pmr_expense_tracker.entities.filters.CategoryFilters;
 import pt.pmrelvas.pmr_expense_tracker.repositories.CategoryRepository;
 import pt.pmrelvas.pmr_expense_tracker.repositories.psql.jpa.JpaCategoryRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +29,20 @@ public class PsqlCategoryRepository implements CategoryRepository {
     @Transactional(readOnly = true)
     @Override
     public List<Category> findAll(CategoryFilters filters) {
-        QCategoryPsql qCategoryPsql = QCategoryPsql.categoryPsql;
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<CategoryPsql> query = cb.createQuery(CategoryPsql.class);
+        Root<CategoryPsql> root = query.from(CategoryPsql.class);
 
-        JPAQuery<CategoryPsql> query = new JPAQueryFactory(entityManager).selectFrom(qCategoryPsql);
+        // Apply filters
+        List<Predicate> predicates = buildPredicates(filters, cb, root);
+        if (!predicates.isEmpty()) {
+            query.where(predicates.toArray(new Predicate[0]));
+        }
 
-        buildWhereClauses(filters, query, qCategoryPsql);
-        return query.distinct().fetch().stream()
+        // Execute query
+        List<CategoryPsql> results = entityManager.createQuery(query).getResultList();
+
+        return results.stream()
                 .map(CategoryPsql::toEntity)
                 .toList();
     }
@@ -56,18 +67,21 @@ public class PsqlCategoryRepository implements CategoryRepository {
         jpaCategoryRepository.deleteById(id);
     }
 
-    private static void buildWhereClauses(CategoryFilters filters, JPAQuery<CategoryPsql> query, QCategoryPsql qCategoryPsql) {
+    private List<Predicate> buildPredicates(CategoryFilters filters, CriteriaBuilder cb, Root<CategoryPsql> root) {
+        List<Predicate> predicates = new ArrayList<>();
+
         if (filters.code() != null) {
-            query.where(qCategoryPsql.code.containsIgnoreCase(filters.code()));
+            predicates.add(cb.like(cb.lower(root.get(CategoryPsql_.code)), "%" + filters.code().toLowerCase() + "%"));
         }
 
         if (filters.name() != null) {
-            query.where(qCategoryPsql.name.containsIgnoreCase(filters.name()));
+            predicates.add(cb.like(cb.lower(root.get(CategoryPsql_.name)), "%" + filters.name().toLowerCase() + "%"));
         }
 
         if (filters.parentCategoryId() != null) {
-            query.where(qCategoryPsql.parentCategory.id.eq(filters.parentCategoryId()));
+            predicates.add(cb.equal(root.get(CategoryPsql_.parentCategory).get(CategoryPsql_.id), filters.parentCategoryId()));
         }
-    }
 
+        return predicates;
+    }
 }

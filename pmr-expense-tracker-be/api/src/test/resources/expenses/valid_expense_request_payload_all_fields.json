@@ -1,0 +1,9 @@
+{
+  "amount": 50.25,
+  "totalBalance": 1250.75,
+  "description": "Grocery shopping",
+  "operationDate": "2024-01-15T10:30:00",
+  "transactionDate": "2024-01-15T10:30:00",
+  "source": "Credit Card",
+  "categoryId": 2
+} 
