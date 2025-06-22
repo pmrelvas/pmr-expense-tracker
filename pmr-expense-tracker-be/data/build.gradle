@@ -21,6 +21,9 @@ dependencies {
     annotationProcessor "com.querydsl:querydsl-apt:$queryDslVersion:jakarta"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    
+    // JPA Metamodel Generator for Criteria API
+    annotationProcessor "org.hibernate.orm:hibernate-jpamodelgen"
 
     // testcontainers
     testImplementation 'org.testcontainers:junit-jupiter'

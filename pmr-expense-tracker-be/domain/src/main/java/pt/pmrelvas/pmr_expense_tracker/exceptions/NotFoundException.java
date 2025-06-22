@@ -14,4 +14,11 @@ public class NotFoundException extends CodedException {
                 "Category with id %s not found".formatted(id),
                 Map.of("id", id));
     }
+
+    public static NotFoundException buildForExpense(long id) {
+        return new NotFoundException(
+                ErrorCode.EXPENSE_NOT_FOUND,
+                "Expense with id %s not found".formatted(id),
+                Map.of("id", id));
+    }
 }
