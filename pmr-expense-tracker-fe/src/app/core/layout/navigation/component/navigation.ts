@@ -9,12 +9,18 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'pet-navigation',
-  imports: [Menubar, BadgeModule, AvatarModule, InputTextModule, Ripple, CommonModule],
+  imports: [
+    Menubar,
+    BadgeModule,
+    AvatarModule,
+    InputTextModule,
+    Ripple,
+    CommonModule,
+  ],
   templateUrl: './navigation.html',
-  styleUrl: './navigation.scss'
+  styleUrl: './navigation.scss',
 })
 export class Navigation {
-
   items: MenuItem[] = [
     {
       label: 'Home',

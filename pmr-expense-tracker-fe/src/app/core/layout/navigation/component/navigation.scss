@@ -1,0 +1,12 @@
+.nav-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.p-menubar {
+  --p-menubar-background: var(--p-blue-950);
+  --p-menubar-color: var(--p-blue-50);
+  --p-menubar-item-color: var(--p-blue-50);
+  --p-menubar-border-radius: 0;
+  border: none;
+}

@@ -1,0 +1,12 @@
+<nav aria-label="Main navigation">
+  <p-menubar [model]="items">
+    <ng-template #start>
+      <span class="nav-title"> PMR E-Tracker </span>
+    </ng-template>
+    <ng-template #item let-item let-root="root">
+      <a pRipple class="flex items-center p-menubar-item-link">
+        <span>{{ item.label }}</span>
+      </a>
+    </ng-template>
+  </p-menubar>
+</nav>
