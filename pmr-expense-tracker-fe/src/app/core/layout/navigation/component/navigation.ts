@@ -6,6 +6,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { InputTextModule } from 'primeng/inputtext';
 import { Ripple } from 'primeng/ripple';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'pet-navigation',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
     InputTextModule,
     Ripple,
     CommonModule,
+    RouterModule,
   ],
   templateUrl: './navigation.html',
   styleUrl: './navigation.scss',
@@ -23,13 +25,12 @@ import { CommonModule } from '@angular/common';
 export class Navigation {
   items: MenuItem[] = [
     {
-      label: 'Home',
-    },
-    {
       label: 'Categories',
+      url: 'categories',
     },
     {
       label: 'Expenses',
+      url: 'expenses',
     },
   ];
 }

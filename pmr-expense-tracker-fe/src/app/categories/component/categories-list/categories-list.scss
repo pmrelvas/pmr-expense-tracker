@@ -1,0 +1,12 @@
+.list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.no-results-found {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  color: var(--p-neutral-500);
+}

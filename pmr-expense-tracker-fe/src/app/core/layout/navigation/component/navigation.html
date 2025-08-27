@@ -5,7 +5,7 @@
     </ng-template>
     <ng-template #item let-item let-root="root">
       <a pRipple class="flex items-center p-menubar-item-link">
-        <span>{{ item.label }}</span>
+        <span [routerLink]="item.url">{{ item.label }}</span>
       </a>
     </ng-template>
   </p-menubar>
