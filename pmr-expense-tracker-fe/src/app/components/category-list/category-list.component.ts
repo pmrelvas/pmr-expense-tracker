@@ -1,5 +1,5 @@
 import { Component, OnInit, signal, inject } from '@angular/core'
-import { CommonModule } from '@angular/common'
+
 import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
@@ -12,13 +12,12 @@ import { Category } from '../../models/category.model'
   selector: 'app-category-list',
   standalone: true,
   imports: [
-    CommonModule,
     MatTableModule,
     MatButtonModule,
     MatCardModule,
     MatProgressSpinnerModule,
     MatChipsModule
-  ],
+],
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.scss'
 })
