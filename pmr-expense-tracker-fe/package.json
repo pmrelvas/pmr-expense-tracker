@@ -37,7 +37,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^19.1.9",
+    "@angular/build": "^22.2.2",
     "@angular/cli": "^22.2.2",
     "@angular/compiler-cli": "^22.2.2",
     "@types/express": "^5.0.1",
@@ -45,7 +45,7 @@
     "@types/node": "^26.6.5",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~5.8.0",
-    "karma": "^4.0.0",
+    "karma": "^6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "^4.0.2",
