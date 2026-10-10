@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog'
 import { CategoryService } from '../../services/category.service'
 import { Category } from '../../models/category.model'
 import { CategoryWriteComponent } from '../category-write/category-write'
+import { ConfirmDialogComponent, ConfirmDialogData } from '../confirm-dialog/confirm-dialog'
+import { ToastService } from '../../services/toast.service'
 
 @Component({
   selector: 'app-category-list',
@@ -29,6 +31,7 @@ import { CategoryWriteComponent } from '../category-write/category-write'
 export class CategoryListComponent implements OnInit {
   private readonly categoryService = inject(CategoryService)
   private readonly dialog = inject(MatDialog);
+  private readonly toastService = inject(ToastService)
 
   categories = signal<Category[]>([])
   isLoading = signal(false)
@@ -63,6 +66,38 @@ export class CategoryListComponent implements OnInit {
 
   updateCategory(category: Category): void {
     this.openCategoryDialog(category)
+  }
+
+  deleteCategory(category: Category): void {
+    const dialogRef = this.dialog.open<ConfirmDialogComponent, ConfirmDialogData, boolean>(
+      ConfirmDialogComponent,
+      {
+        width: '400px',
+        data: {
+          title: 'Delete category',
+          message: `Are you sure you want to delete the category "${category.name}" (${category.code})? This action cannot be undone.`,
+          confirmLabel: 'Delete',
+          cancelLabel: 'Cancel',
+          confirmColor: 'warn'
+        }
+      }
+    )
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (!confirmed) {
+        return
+      }
+
+      this.categoryService.delete(category.id).subscribe({
+        next: () => {
+          this.toastService.success('Category deleted')
+          this.loadCategories()
+        },
+        error: () => {
+          this.toastService.error('An error has occurred')
+        }
+      })
+    })
   }
 
   private openCategoryDialog(category: Category | null): void {
