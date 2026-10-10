@@ -9,6 +9,12 @@
     ]
   },
   "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    },
     "typeCheckHostBindings": false
   },
   "include": [

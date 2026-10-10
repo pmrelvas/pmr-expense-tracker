@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject } from '@angular/core'
+import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core'
 
 import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button'
@@ -19,6 +19,7 @@ import { Category } from '../../models/category.model'
     MatChipsModule
 ],
   templateUrl: './category-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './category-list.component.scss'
 })
 export class CategoryListComponent implements OnInit {
