@@ -7,6 +7,12 @@ export interface Category {
   updatedAt: string
 }
 
+export interface CategoryPayload {
+  code: string
+  name: string
+  parentCategoryId: number | null
+}
+
 export interface CategoryFilters {
   code?: string
   name?: string

@@ -22,6 +22,7 @@ import utils.ResourceLoader;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
@@ -212,6 +213,30 @@ public class CategoryControllerApiTest extends BaseApiTest {
 
         // Assert
         verifyNoInteractions(createCategoryUseCase);
+    }
+
+    @Test
+    void createCategoryWithUnexpectedErrorShouldReturnGenericError() throws Exception {
+        // Arrange
+        final String payload = ResourceLoader.getStringFromFile("categories/valid_category_request_payload_all_fields.json");
+        when(createCategoryUseCase.execute(any()))
+                .thenThrow(new RuntimeException("Sensitive internal failure details"));
+
+        // Act
+        ErrorApiResponsePayload result = request(RequestDto.<ErrorApiResponsePayload>builder()
+                .requestBuilder(post(BASE_URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payload))
+                .resultMatcher(status().isInternalServerError())
+                .clazz(ErrorApiResponsePayload.class)
+                .build());
+
+        // Assert
+        assertThat(result)
+                .isEqualTo(ErrorApiResponsePayload.builder()
+                        .errorCode(ErrorCode.INTERNAL_ERROR.getCode())
+                        .message("An error has occurred")
+                        .build());
     }
 
     @Test

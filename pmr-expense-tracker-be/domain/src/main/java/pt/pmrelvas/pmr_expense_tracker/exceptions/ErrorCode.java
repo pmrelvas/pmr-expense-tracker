@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum ErrorCode {
 
     CATEGORY_NOT_FOUND(4000),
-    EXPENSE_NOT_FOUND(4001);
+    EXPENSE_NOT_FOUND(4001),
+    INTERNAL_ERROR(5000);
 
     private int code;
 
