@@ -8,6 +8,9 @@
       "node"
     ]
   },
+  "angularCompilerOptions": {
+    "typeCheckHostBindings": false
+  },
   "include": [
     "src/**/*.ts"
   ],
