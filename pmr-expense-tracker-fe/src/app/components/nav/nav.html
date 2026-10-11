@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="app-navbar">
+  <a class="brand" routerLink="/categories">
+    <mat-icon>account_balance_wallet</mat-icon>
+    <span class="brand-name">PMR Expense Tracker</span>
+  </a>
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+    <a mat-button routerLink="/categories" routerLinkActive="active-link">
+      <mat-icon>category</mat-icon>
+      <span>Categories</span>
+    </a>
+    <a mat-button routerLink="/expenses" routerLinkActive="active-link">
+      <mat-icon>receipt_long</mat-icon>
+      <span>Expenses</span>
+    </a>
+  </nav>
+</mat-toolbar>
