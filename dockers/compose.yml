@@ -9,3 +9,4 @@ services:
 
 volumes:
   postgres_data:
+    name: pmr-expense-tracker-db-data

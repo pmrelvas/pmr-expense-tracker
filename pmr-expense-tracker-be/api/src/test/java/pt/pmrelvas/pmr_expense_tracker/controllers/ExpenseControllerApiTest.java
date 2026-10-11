@@ -12,7 +12,6 @@ import pt.pmrelvas.pmr_expense_tracker.entities.fake.FakeExpenses;
 import pt.pmrelvas.pmr_expense_tracker.entities.filters.ExpenseFilters;
 import pt.pmrelvas.pmr_expense_tracker.exceptions.ErrorCode;
 import pt.pmrelvas.pmr_expense_tracker.exceptions.NotFoundException;
-import pt.pmrelvas.pmr_expense_tracker.payloads.response.ExpenseApiRequestPayload;
 import pt.pmrelvas.pmr_expense_tracker.payloads.response.ExpenseApiResponsePayload;
 import pt.pmrelvas.pmr_expense_tracker.payloads.response.ErrorApiResponsePayload;
 import pt.pmrelvas.pmr_expense_tracker.usecases.expenses.CreateExpenseUseCase;

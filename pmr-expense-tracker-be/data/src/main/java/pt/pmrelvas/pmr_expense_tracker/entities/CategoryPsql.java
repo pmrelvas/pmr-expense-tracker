@@ -42,12 +42,16 @@ public class CategoryPsql {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
     public CategoryPsql(Category category) {
         this.id = category.id();
         this.code = category.code();
         this.name = category.name();
         this.parentCategory = category.parentCategory() == null ? null : new CategoryPsql(category.parentCategory());
         this.createdAt = category.createdAt();
+        this.updatedAt = category.updatedAt();
     }
 
     public Category toEntity() {
@@ -57,6 +61,7 @@ public class CategoryPsql {
                 .name(this.name)
                 .parentCategory(this.parentCategory == null ? null : this.parentCategory.toEntity())
                 .createdAt(this.createdAt)
+                .updatedAt(this.updatedAt)
                 .build();
     }
 }
